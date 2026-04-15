@@ -33,25 +33,6 @@ function HeroSection() {
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
 
-        {/* Floating service card — right side decoration */}
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.9, delay: 0.5 }}
-          className="hidden lg:block absolute right-8 top-1/2 -translate-y-1/2 w-60 rounded-2xl overflow-hidden shadow-2xl border border-white/10"
-        >
-          <img
-            src="https://i.pinimg.com/1200x/2c/a3/e7/2ca3e7e3b8352a6892e053534c623647.jpg"
-            alt="Featured service"
-            className="w-full h-44 object-cover"
-          />
-          <div className="bg-card/90 backdrop-blur-sm p-3">
-            <div className="text-primary font-bold text-lg">4.8★</div>
-            <div className="text-xs text-muted-foreground">Average Rating</div>
-            <div className="mt-2 text-sm font-semibold text-foreground">Beauty Salon</div>
-            <div className="text-xs text-muted-foreground">Verified Vendor</div>
-          </div>
-        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
