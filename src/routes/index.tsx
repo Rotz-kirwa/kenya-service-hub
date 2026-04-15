@@ -4,7 +4,7 @@ import { Search, MapPin, ChevronRight, Shield, Zap, Users, Star, ArrowRight, Che
 import { Button } from "@/components/ui/button";
 import { ServiceCard } from "@/components/ServiceCard";
 import { services, locations } from "@/data/services";
-const heroBg = "https://www.dropbox.com/scl/fi/01eecdaauxl3lqfcfo8mt/hd1.jpeg?rlkey=a26l9xehh7sj3ajahfuay4e2u&st=yp2d2j51&dl=1";
+import heroBg from "@/assets/hero-bg.webp";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
