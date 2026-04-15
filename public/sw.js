@@ -1,4 +1,4 @@
-const CACHE = "hudumahub-v1";
+const CACHE = "withinreach-v1";
 
 const PRECACHE = [
   "/",

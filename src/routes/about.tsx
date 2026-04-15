@@ -5,9 +5,9 @@ import { Shield, Users, Target, Award } from "lucide-react";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Us — HudumaHub" },
-      { name: "description", content: "HudumaHub is Kenya's premier online marketplace connecting customers with trusted service providers." },
-      { property: "og:title", content: "About HudumaHub" },
+      { title: "About Us — Within Reach Services" },
+      { name: "description", content: "Within Reach Services is Kenya's premier online marketplace connecting customers with trusted service providers." },
+      { property: "og:title", content: "About Within Reach Services" },
       { property: "og:description", content: "Connecting Kenya with trusted professionals since 2024." },
     ],
   }),
@@ -23,14 +23,14 @@ function AboutPage() {
             Empowering Kenya's <span className="text-primary">Service Economy</span>
           </h1>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            HudumaHub was born from a simple idea: every talented service provider in Kenya deserves to be found. We're building Africa's most trusted marketplace where skills meet opportunity.
+            Within Reach Services was born from a simple idea: every talented service provider in Kenya deserves to be found. We're building Africa's most trusted marketplace where skills meet opportunity.
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           {[
             { icon: Target, title: "Our Mission", text: "To connect every Kenyan with trusted, affordable service providers — effortlessly." },
-            { icon: Users, title: "Community First", text: "50,000+ customers and 12,000+ vendors trust HudumaHub for their service needs." },
+            { icon: Users, title: "Community First", text: "50,000+ customers and 12,000+ vendors trust Within Reach Services for their service needs." },
             { icon: Shield, title: "Trust & Safety", text: "Every vendor is vetted. Genuine reviews and secure payments protect our community." },
             { icon: Award, title: "Quality", text: "We champion excellence — only the best service providers earn featured status." },
           ].map((item, i) => (

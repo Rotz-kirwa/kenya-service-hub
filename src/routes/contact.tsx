@@ -8,9 +8,9 @@ import { categories } from "@/data/services";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact Us — HudumaHub" },
-      { name: "description", content: "Get in touch with HudumaHub. We're here to help customers and vendors." },
-      { property: "og:title", content: "Contact HudumaHub" },
+      { title: "Contact Us — Within Reach Services" },
+      { name: "description", content: "Get in touch with Within Reach Services. We're here to help customers and vendors." },
+      { property: "og:title", content: "Contact Within Reach Services" },
       { property: "og:description", content: "Reach out — we'd love to hear from you." },
     ],
   }),
@@ -36,7 +36,7 @@ function ContactPage() {
     e.preventDefault();
 
     const lines = [
-      `Hello HudumaHub! 👋`,
+      `Hello Within Reach Services! 👋`,
       ``,
       `*Name:* ${form.name || "—"}`,
       `*Email:* ${form.email || "—"}`,
@@ -70,7 +70,7 @@ function ContactPage() {
             {[
               { icon: MapPin, title: "Office", text: "Westlands, Nairobi, Kenya" },
               { icon: Phone, title: "Phone", text: "+254 719 565618" },
-              { icon: Mail, title: "Email", text: "hello@hudumahub.co.ke" },
+              { icon: Mail, title: "Email", text: "hello@withinreach.co.ke" },
               { icon: Clock, title: "Hours", text: "Mon - Fri, 8am - 6pm EAT" },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3">

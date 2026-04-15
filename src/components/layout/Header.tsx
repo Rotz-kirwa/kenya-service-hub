@@ -22,10 +22,10 @@ export function Header() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <div className="flex h-9 w-9 items-center justify-center rounded-lg gold-gradient">
-              <span className="text-lg font-bold text-foreground">H</span>
+              <span className="text-lg font-bold text-foreground">W</span>
             </div>
             <span className="font-display text-xl font-bold text-foreground tracking-tight">
-              Huduma<span className="text-primary">Hub</span>
+              Within Reach <span className="text-primary">Services</span>
             </span>
           </Link>
 

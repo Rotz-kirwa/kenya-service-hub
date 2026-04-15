@@ -9,9 +9,9 @@ import { useState } from "react";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Browse Services — HudumaHub" },
+      { title: "Browse Services — Within Reach Services" },
       { name: "description", content: "Explore thousands of verified service providers across Kenya. Filter by category, location, and budget." },
-      { property: "og:title", content: "Browse Services — HudumaHub" },
+      { property: "og:title", content: "Browse Services — Within Reach Services" },
       { property: "og:description", content: "Find trusted professionals for any service in Kenya." },
     ],
   }),

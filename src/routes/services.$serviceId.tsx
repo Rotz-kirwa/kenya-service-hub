@@ -10,7 +10,7 @@ export const Route = createFileRoute("/services/$serviceId")({
     const service = services.find((s) => s.id === params.serviceId);
     return {
       meta: [
-        { title: service ? `${service.title} — HudumaHub` : "Service — HudumaHub" },
+        { title: service ? `${service.title} — Within Reach Services` : "Service — Within Reach Services" },
         { name: "description", content: service?.description ?? "" },
         { property: "og:title", content: service?.title ?? "Service" },
         { property: "og:description", content: service?.description ?? "" },
@@ -195,7 +195,7 @@ function ServiceDetailPage() {
                   <span className="font-semibold text-sm text-foreground">Trust & Safety</span>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  This vendor is verified by HudumaHub. We recommend communicating through our platform for your security.
+                  This vendor is verified by Within Reach Services. We recommend communicating through our platform for your security.
                 </p>
               </div>
             </div>

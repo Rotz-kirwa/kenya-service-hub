@@ -32,15 +32,15 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "HudumaHub — Kenya's Premier Service Marketplace" },
+      { title: "Within Reach Services — Kenya's Premier Service Marketplace" },
       { name: "description", content: "Discover and hire trusted service providers across Kenya. From catering to photography, find the perfect professional for any job." },
-      { name: "author", content: "HudumaHub" },
+      { name: "author", content: "Within Reach Services" },
       { name: "theme-color", content: "#C8930A" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-status-bar-style", content: "default" },
-      { name: "apple-mobile-web-app-title", content: "HudumaHub" },
+      { name: "apple-mobile-web-app-title", content: "Within Reach" },
       { name: "mobile-web-app-capable", content: "yes" },
-      { property: "og:title", content: "HudumaHub — Kenya's Premier Service Marketplace" },
+      { property: "og:title", content: "Within Reach Services — Kenya's Premier Service Marketplace" },
       { property: "og:description", content: "Discover and hire trusted service providers across Kenya." },
       { property: "og:type", content: "website" },
     ],
@@ -72,7 +72,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function WhatsAppButton() {
   const phone = "254719565618";
-  const message = encodeURIComponent("Hello! I found you on HudumaHub and I'd like to enquire about your services.");
+  const message = encodeURIComponent("Hello! I found you on Within Reach Services and I'd like to enquire about your services.");
   return (
     <>
       <style>{`

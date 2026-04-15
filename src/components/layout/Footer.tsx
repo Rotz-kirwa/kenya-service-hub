@@ -30,10 +30,10 @@ export function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <div className="flex h-9 w-9 items-center justify-center rounded-lg gold-gradient">
-                <span className="text-lg font-bold text-foreground">H</span>
+                <span className="text-lg font-bold text-foreground">W</span>
               </div>
               <span className="font-display text-xl font-bold tracking-tight">
-                Huduma<span className="text-primary">Hub</span>
+                Within Reach <span className="text-primary">Services</span>
               </span>
             </div>
             <p className="text-sm text-card/60 mb-6 leading-relaxed">
@@ -81,9 +81,9 @@ export function Footer() {
             <Phone className="h-4 w-4 text-primary" /> +254 700 000 000
           </span>
           <span className="flex items-center gap-2">
-            <Mail className="h-4 w-4 text-primary" /> hello@hudumahub.co.ke
+            <Mail className="h-4 w-4 text-primary" /> hello@withinreach.co.ke
           </span>
-          <span className="ml-auto">© 2026 HudumaHub. All rights reserved.</span>
+          <span className="ml-auto">© 2026 Within Reach Services. All rights reserved.</span>
         </div>
       </div>
     </footer>

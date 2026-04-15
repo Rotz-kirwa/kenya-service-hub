@@ -6,10 +6,9 @@ import { CheckCircle, Zap, Star, Crown, ArrowRight } from "lucide-react";
 export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
-      { title: "Pricing & Promotions — HudumaHub" },
+      { title: "Pricing & Promotions — Within Reach Services" },
       { name: "description", content: "Boost your service listing with premium promotions. Get more visibility and reach more customers." },
-      { property: "og:title", content: "Pricing & Promotions — HudumaHub" },
-      { property: "og:description", content: "Affordable plans to grow your service business on HudumaHub." },
+      { property: "og:description", content: "Affordable plans to grow your service business on Within Reach Services." },
     ],
   }),
   component: PricingPage,
@@ -77,7 +76,7 @@ function PricingPage() {
           className="text-center mb-14"
         >
           <h1 className="font-display text-4xl font-bold text-foreground">
-            Grow Your Business with <span className="text-primary">HudumaHub</span>
+            Grow Your Business with <span className="text-primary">Within Reach Services</span>
           </h1>
           <p className="text-muted-foreground mt-3 max-w-xl mx-auto">
             Choose the plan that fits your business. Upgrade anytime as you grow.

@@ -181,7 +181,7 @@ function HowItWorksSection() {
     <section className="py-20 bg-background">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
-          <h2 className="font-display text-3xl font-bold text-foreground">How HudumaHub Works</h2>
+          <h2 className="font-display text-3xl font-bold text-foreground">How Within Reach Services Works</h2>
           <p className="text-muted-foreground mt-2 max-w-xl mx-auto">
             Finding and hiring the right service provider has never been easier
           </p>
@@ -215,19 +215,19 @@ function TestimonialsSection() {
     {
       name: "Grace Wanjiku",
       role: "Bride",
-      text: "Found the most amazing wedding photographer through HudumaHub. The whole process was seamless — from browsing to booking. Highly recommend!",
+      text: "Found the most amazing wedding photographer through Within Reach Services. The whole process was seamless — from browsing to booking. Highly recommend!",
       rating: 5,
     },
     {
       name: "James Ochieng",
       role: "Business Owner",
-      text: "As a caterer, HudumaHub has tripled my client base. The featured listing really works! I now get 20+ inquiries weekly.",
+      text: "As a caterer, Within Reach Services has tripled my client base. The featured listing really works! I now get 20+ inquiries weekly.",
       rating: 5,
     },
     {
       name: "Amina Hassan",
       role: "Homeowner",
-      text: "Needed an emergency plumber at 9pm and found one within 30 minutes through HudumaHub. The verified badge gave me confidence to hire.",
+      text: "Needed an emergency plumber at 9pm and found one within 30 minutes through Within Reach Services. The verified badge gave me confidence to hire.",
       rating: 5,
     },
   ];
@@ -280,7 +280,7 @@ function CTASection() {
               Ready to Grow Your Service Business?
             </h2>
             <p className="text-cream/70 max-w-xl mx-auto mb-8">
-              Join 12,000+ vendors who are reaching new customers every day on HudumaHub. Post your first listing for free.
+              Join 12,000+ vendors who are reaching new customers every day on Within Reach Services. Post your first listing for free.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button variant="hero" size="lg" className="rounded-xl text-base px-8">
