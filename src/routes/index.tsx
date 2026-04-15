@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Search, MapPin, ChevronRight, Shield, Zap, Users, Star, ArrowRight, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ServiceCard } from "@/components/ServiceCard";
-import { categories, services, locations } from "@/data/services";
+import { services, locations } from "@/data/services";
 import heroBg from "@/assets/hero-bg.jpg";
 
 export const Route = createFileRoute("/")({
@@ -14,7 +14,6 @@ function HomePage() {
   return (
     <>
       <HeroSection />
-      <CategoriesSection />
       <FeaturedServicesSection />
       <HowItWorksSection />
       <TestimonialsSection />
@@ -33,6 +32,27 @@ function HeroSection() {
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+
+        {/* Floating service card — right side decoration */}
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.9, delay: 0.5 }}
+          className="hidden lg:block absolute right-8 top-1/2 -translate-y-1/2 w-60 rounded-2xl overflow-hidden shadow-2xl border border-white/10"
+        >
+          <img
+            src="https://i.pinimg.com/1200x/2c/a3/e7/2ca3e7e3b8352a6892e053534c623647.jpg"
+            alt="Featured service"
+            className="w-full h-44 object-cover"
+          />
+          <div className="bg-card/90 backdrop-blur-sm p-3">
+            <div className="text-primary font-bold text-lg">4.8★</div>
+            <div className="text-xs text-muted-foreground">Average Rating</div>
+            <div className="mt-2 text-sm font-semibold text-foreground">Beauty Salon</div>
+            <div className="text-xs text-muted-foreground">Verified Vendor</div>
+          </div>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -119,50 +139,6 @@ function HeroSection() {
   );
 }
 
-function CategoriesSection() {
-  return (
-    <section className="py-20 bg-background">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-end justify-between mb-10">
-          <div>
-            <h2 className="font-display text-3xl font-bold text-foreground">Browse by Category</h2>
-            <p className="text-muted-foreground mt-2">Explore 200+ service categories across Kenya</p>
-          </div>
-          <Link to="/categories" className="hidden sm:flex items-center gap-1 text-sm font-medium text-primary hover:underline">
-            View All <ChevronRight className="h-4 w-4" />
-          </Link>
-        </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4">
-          {categories.slice(0, 8).map((cat, i) => (
-            <motion.div
-              key={cat.slug}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-            >
-              <Link
-                to="/services"
-                className="group flex flex-col items-center gap-3 p-6 rounded-xl bg-card border border-border/50 hover-lift text-center"
-              >
-                <span className="text-3xl">{cat.icon}</span>
-                <span className="font-medium text-sm text-card-foreground group-hover:text-primary transition-colors">
-                  {cat.name}
-                </span>
-                <span className="text-xs text-muted-foreground">{cat.count} services</span>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-        <div className="sm:hidden mt-6 text-center">
-          <Link to="/categories" className="text-sm font-medium text-primary hover:underline">
-            View All Categories →
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 function FeaturedServicesSection() {
   const featured = services.filter((s) => s.featured);

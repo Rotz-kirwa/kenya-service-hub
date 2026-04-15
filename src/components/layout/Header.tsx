@@ -1,13 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { Search, Menu, X, User, Heart } from "lucide-react";
+import { Search, Menu, X, Heart } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { to: "/", label: "Home" },
   { to: "/services", label: "Browse Services" },
-  { to: "/categories", label: "Categories" },
   { to: "/pricing", label: "Pricing" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
@@ -52,13 +51,6 @@ export function Header() {
             <Button variant="ghost" size="icon" aria-label="Favorites">
               <Heart className="h-4 w-4" />
             </Button>
-            <Button variant="outline" size="sm">
-              <User className="h-4 w-4" />
-              Sign In
-            </Button>
-            <Button variant="hero" size="sm">
-              Post a Service
-            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -93,14 +85,6 @@ export function Header() {
                   {link.label}
                 </Link>
               ))}
-              <div className="flex gap-2 mt-3 pt-3 border-t border-border/50">
-                <Button variant="outline" size="sm" className="flex-1">
-                  Sign In
-                </Button>
-                <Button variant="hero" size="sm" className="flex-1">
-                  Post a Service
-                </Button>
-              </div>
             </nav>
           </motion.div>
         )}

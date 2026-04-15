@@ -4,7 +4,6 @@ import { MapPin, Phone, Mail, Globe, MessageCircle, ExternalLink } from "lucide-
 const footerLinks = {
   "For Customers": [
     { label: "Browse Services", to: "/services" },
-    { label: "Categories", to: "/categories" },
     { label: "How It Works", to: "/about" },
     { label: "Help Center", to: "/contact" },
   ],
