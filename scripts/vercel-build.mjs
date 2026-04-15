@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Vercel Build Output API v3
- * Builds the TanStack Start app and structures output for Vercel deployment.
+ * Builds TanStack Start and bundles the SSR server for Vercel deployment.
  */
 import { execSync } from "node:child_process";
 import { mkdirSync, writeFileSync, cpSync, rmSync, existsSync } from "node:fs";
@@ -23,83 +23,98 @@ mkdirSync(".vercel/output/functions/index.func", { recursive: true });
 console.log("Copying static assets...");
 cpSync("dist/client", ".vercel/output/static", { recursive: true });
 
-// ── 5. Copy server bundle into the function ─────────────────────────────────
-console.log("Setting up serverless function...");
-cpSync("dist/server", ".vercel/output/functions/index.func", { recursive: true });
+// ── 5. Bundle server + all deps into one file ───────────────────────────────
+console.log("Bundling server...");
+execSync(
+  [
+    "bun build dist/server/server.js",
+    "--outfile .vercel/output/functions/index.func/server.mjs",
+    "--target node",
+    "--format esm",
+    "--external node:*",   // keep Node.js built-ins as-is
+    "--minify-whitespace", // smaller bundle
+  ].join(" "),
+  { stdio: "inherit" }
+);
 
-// ── 6. Create the Node.js request handler wrapper ───────────────────────────
+// ── 6. Copy server assets (manifest, route chunks) ──────────────────────────
+if (existsSync("dist/server/assets")) {
+  cpSync("dist/server/assets", ".vercel/output/functions/index.func/assets", {
+    recursive: true,
+  });
+}
+
+// ── 7. Node.js request handler ──────────────────────────────────────────────
 writeFileSync(
   ".vercel/output/functions/index.func/handler.mjs",
-  `
-import serverEntry from "./server.js";
+  `import serverEntry from "./server.mjs";
 
 export default async function handler(req, res) {
-  const protocol = req.headers["x-forwarded-proto"] || "https";
-  const host = req.headers["x-forwarded-host"] || req.headers.host;
-  const url = \`\${protocol}://\${host}\${req.url}\`;
+  try {
+    const protocol = req.headers["x-forwarded-proto"] || "https";
+    const host = req.headers["x-forwarded-host"] || req.headers.host;
+    const url = \`\${protocol}://\${host}\${req.url}\`;
 
-  const headers = new Headers();
-  for (const [key, value] of Object.entries(req.headers)) {
-    if (value) headers.set(key, Array.isArray(value) ? value.join(", ") : value);
+    const headers = new Headers();
+    for (const [key, value] of Object.entries(req.headers)) {
+      if (value) headers.set(key, Array.isArray(value) ? value.join(", ") : value);
+    }
+
+    let body = undefined;
+    if (req.method !== "GET" && req.method !== "HEAD") {
+      body = await new Promise((resolve) => {
+        const chunks = [];
+        req.on("data", (c) => chunks.push(c));
+        req.on("end", () => resolve(Buffer.concat(chunks)));
+      });
+    }
+
+    const response = await serverEntry.fetch(new Request(url, { method: req.method, headers, body }));
+
+    res.statusCode = response.status;
+    for (const [key, value] of response.headers.entries()) {
+      res.setHeader(key, value);
+    }
+    res.end(Buffer.from(await response.arrayBuffer()));
+  } catch (err) {
+    console.error("SSR error:", err);
+    res.statusCode = 500;
+    res.end("Internal Server Error");
   }
-
-  let body = undefined;
-  if (req.method !== "GET" && req.method !== "HEAD") {
-    body = await new Promise((resolve) => {
-      const chunks = [];
-      req.on("data", (chunk) => chunks.push(chunk));
-      req.on("end", () => resolve(Buffer.concat(chunks)));
-    });
-  }
-
-  const request = new Request(url, { method: req.method, headers, body });
-  const response = await serverEntry.fetch(request);
-
-  res.statusCode = response.status;
-  for (const [key, value] of response.headers.entries()) {
-    res.setHeader(key, value);
-  }
-
-  const buffer = Buffer.from(await response.arrayBuffer());
-  res.end(buffer);
 }
-`.trimStart()
+`
 );
 
-// ── 7. Vercel function config ────────────────────────────────────────────────
+// ── 8. Vercel function config ────────────────────────────────────────────────
 writeFileSync(
   ".vercel/output/functions/index.func/.vc-config.json",
-  JSON.stringify({
-    runtime: "nodejs22.x",
-    handler: "handler.mjs",
-    launchWorker: true,
-  }, null, 2)
+  JSON.stringify({ runtime: "nodejs22.x", handler: "handler.mjs" }, null, 2)
 );
 
-// ── 8. Vercel output config ──────────────────────────────────────────────────
+// ── 9. Vercel output config ──────────────────────────────────────────────────
 writeFileSync(
   ".vercel/output/config.json",
-  JSON.stringify({
-    version: 3,
-    routes: [
-      // Static assets — cache forever
-      {
-        src: "/assets/(.+)",
-        headers: { "cache-control": "public, max-age=31536000, immutable" },
-        continue: true,
-      },
-      // SW — never cache
-      {
-        src: "/sw.js",
-        headers: { "cache-control": "no-cache, no-store, must-revalidate" },
-        continue: true,
-      },
-      // Serve static files if they exist
-      { handle: "filesystem" },
-      // Everything else → SSR function
-      { src: "/(.*)", dest: "/index" },
-    ],
-  }, null, 2)
+  JSON.stringify(
+    {
+      version: 3,
+      routes: [
+        {
+          src: "/assets/(.+)",
+          headers: { "cache-control": "public, max-age=31536000, immutable" },
+          continue: true,
+        },
+        {
+          src: "/sw.js",
+          headers: { "cache-control": "no-cache, no-store, must-revalidate" },
+          continue: true,
+        },
+        { handle: "filesystem" },
+        { src: "/(.*)", dest: "/index" },
+      ],
+    },
+    null,
+    2
+  )
 );
 
 console.log("✓ Vercel output ready at .vercel/output");
